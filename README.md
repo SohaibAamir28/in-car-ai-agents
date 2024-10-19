@@ -1,5 +1,7 @@
 # In-Car AI Agents
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://in-car-ai-agents-edge-runners-3-point-2.streamlit.app/)
+
 ## Overview
 In-Car AI Agents is an innovative project aimed at enhancing the driving experience through intelligent voice-controlled assistants. These agents can assist drivers with navigation, entertainment, vehicle diagnostics, and more, all while ensuring safety and convenience.
 
