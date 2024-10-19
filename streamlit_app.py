@@ -30,11 +30,13 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # Initialize the Together client
+# Initialize the Together client without relying on st.secrets
 @st.cache_resource
 def get_together_client():
-    return Together(base_url="https://api.aimlapi.com/v1", api_key=st.secrets["AIML_API_KEY"])
+    return Together(api_key='97d77defec520871d1e2d66980d1b37c350065417d8e3ca9f331c20a145bd9b2')
 
 client = get_together_client()
+
 
 def process_text_query(query, model="meta-llama/Llama-3.2-3B-Instruct-Turbo"):
     response = client.chat.completions.create(
