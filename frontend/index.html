@@ -3,9 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Improved Car Infotainment System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 </head>
 <body>
-    <h1>Sample web page</h1>
+    <div class="container">
+        <div class="header">
+            Car Infotainment System
+        </div>
+
+        <div class="screen-container">
+            <div id="home-screen" class="screen active">
+                <div class="time-display" id="time-display"></div>
+                <div class="button-group">
+                    <button class="btn" onclick="showScreen(1)"><i class="fas fa-snowflake"></i> AC Control</button>
+                    <button class="btn" onclick="showScreen(2)"><i class="fas fa-music"></i> Music Player</button>
+                    <button class="btn" onclick="showScreen(3)"><i class="fas fa-map-marker-alt"></i> Maps</button>
+                </div>
+            </div>
+
+            <div id="ac-screen" class="screen">
+                <h2><i class="fas fa-snowflake"></i> AC Control</h2>
+                <div class="temperature-display">
+                    <p>Temperature:</p>
+                    <h1 id="temp-value">22</h1>
+                    <p>°C</p>
+                </div>
+                <div class="button-group">
+                    <button class="btn" onclick="changeTemp(-1)"><i class="fas fa-minus"></i></button>
+                    <button class="btn" onclick="changeTemp(1)"><i class="fas fa-plus"></i></button>
+                </div>
+                <div class="home-icon" onclick="showScreen(0)"><i class="fas fa-home"></i></div>
+            </div>
+
+            <div id="music-screen" class="screen">
+                <h2><i class="fas fa-music"></i> Music Player</h2>
+                <div class="now-playing">
+                    <p>Now Playing:</p>
+                    <h3 id="current-song">Song Title - Artist</h3>
+                </div>
+                <div class="button-group">
+                    <button class="btn"><i class="fas fa-play"></i></button>
+                    <button class="btn"><i class="fas fa-pause"></i></button>
+                    <button class="btn"><i class="fas fa-stop"></i></button>
+                </div>
+                <div class="home-icon" onclick="showScreen(0)"><i class="fas fa-home"></i></div>
+            </div>
+
+            <div id="maps-screen" class="screen">
+                <h2><i class="fas fa-map-marker-alt"></i> Maps</h2>
+                <div class="destination-display">
+                    <p>Destination:</p>
+                    <input type="text" class="nav-input" placeholder="Enter destination" id="destination">
+                </div>
+                <button class="btn">Get Directions</button>
+                <div class="home-icon" onclick="showScreen(0)"><i class="fas fa-home"></i></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="nav-indicators">
+                <div class="indicator active" onclick="showScreen(0)"></div>
+                <div class="indicator" onclick="showScreen(1)"></div>
+                <div class="indicator" onclick="showScreen(2)"></div>
+                <div class="indicator" onclick="showScreen(3)"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,207 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #2c2c2c;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.screen-container {
+    min-height: 400px;
+}
+
+.screen {
+    display: none;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+    position: relative;
+    z-index: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.screen::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+}
+
+#ac-screen {
+    background-image: url('tembackground.jpg');
+}
+
+#music-screen {
+    background-image: url('musicbackground.jpg');
+}
+
+#maps-screen {
+    background-image: url('mapsbackground.jpg');
+}
+
+#home-screen {
+    background-image: url('homebackground.jpg');
+}
+
+.screen > * {
+    position: relative;
+    z-index: 2;
+}
+
+.temperature-display, .now-playing, .destination-display {
+    text-align: center;
+    margin: 20px 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.temperature-display h1 {
+    font-size: 72px;
+    color: #00ccff;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    background-color: rgba(0, 123, 255, 0.8);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: rgba(0, 86, 179, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.nav-input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+.nav-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer {
+    background-color: rgba(44, 44, 44, 0.8);
+    padding: 15px;
+    text-align: center;
+}
+
+.nav-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background-color: #007bff;
+    transform: scale(1.2);
+}
+
+.indicator:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.2);
+}
+
+.home-icon {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 123, 255, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.home-icon:hover {
+    background-color: rgba(0, 86, 179, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.home-icon:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.time-display {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
