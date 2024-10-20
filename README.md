@@ -24,6 +24,7 @@ In-Car AI Agents is an innovative project aimed at enhancing the driving experie
 ## Installation
 
 ### Prerequisites
+-  pip install streamlit transformers speechrecognition openai pyaudio
 - Python 3.x
 - Node.js
 - MongoDB
