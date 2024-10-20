@@ -14,5 +14,4 @@ streamlit-audiorec
 transformers
 whisper
 speechrecognition
-pyaudio
-pip install --upgrade pip
+PyAudio
