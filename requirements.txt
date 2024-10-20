@@ -14,4 +14,4 @@ streamlit-audiorec
 transformers
 whisper
 speechrecognition
-PyAudio
+pyaudio
