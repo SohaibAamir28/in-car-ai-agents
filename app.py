@@ -1,5 +1,5 @@
 import streamlit as st
-import speechrecognition as sr
+import speech_recognition as sr
 from together import Together
 import time
 
