@@ -1,3 +1,4 @@
-streamlit
-together
-speechrecognition
+streamlit==1.25.0
+speechrecognition==3.8.1
+together==0.0.5
+pyaudio==0.2.13
