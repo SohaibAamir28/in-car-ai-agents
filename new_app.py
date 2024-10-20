@@ -2,11 +2,17 @@ import streamlit as st
 import speech_recognition as sr
 from together import Together
 import os
-from pygame import mixer
-import time
+import platform
 
-# Initialize pygame mixer for playing audio
-mixer.init()
+# Check if the app is running in a Streamlit environment or a cloud environment without audio support
+IS_CLOUD_DEPLOYMENT = os.getenv("STREAMLIT_SERVER_HEADLESS", "false") == "true"
+
+# Only import and initialize pygame mixer if the app is running locally
+if not IS_CLOUD_DEPLOYMENT and platform.system() != "Linux":
+    from pygame import mixer
+    mixer.init()  # Initialize pygame mixer only if not in cloud or headless mode
+else:
+    st.write("Audio features are disabled in this environment.")
 
 # Set page config
 st.set_page_config(page_title="Car Infotainment System", layout="wide")
@@ -63,7 +69,7 @@ col1, col2 = st.columns([1, 1])
 # Initialize the Together client
 @st.cache_resource
 def get_together_client():
-    return Together(api_key='97d77defec520871d1e2d66980d1b37c350065417d8e3ca9f331c20a145bd9b2')
+    return Together(api_key='YOUR_API_KEY')
 
 client = get_together_client()
 
@@ -92,17 +98,24 @@ available_songs = {
 }
 
 def play_song(song_name):
-    song_path = os.path.join(SONGS_DIR, available_songs.get(song_name, ""))
-    if os.path.exists(song_path):
-        mixer.music.load(song_path)
-        mixer.music.play()
-        st.write(f"Now Playing: {song_name}")
+    if not IS_CLOUD_DEPLOYMENT:
+        song_path = os.path.join(SONGS_DIR, available_songs.get(song_name, ""))
+        if os.path.exists(song_path):
+            mixer.music.load(song_path)
+            mixer.music.play()
+            st.write(f"Now Playing: {song_name}")
+        else:
+            st.write("Sorry, song not found.")
     else:
-        st.write("Sorry, song not found.")
+        st.write(f"Audio playback is disabled. Would have played: {song_name}")
 
 def stop_song():
-    mixer.music.stop()
-    st.write("Music stopped.")
+    if not IS_CLOUD_DEPLOYMENT:
+        mixer.music.stop()
+        st.write("Music stopped.")
+    else:
+        st.write("Music stop command received, but audio features are disabled in this environment.")
+
 # Function to handle recognized voice command
 def handle_command(command):
     st.write(f"Processing command: {command}")
@@ -110,7 +123,6 @@ def handle_command(command):
     # Use Llama model to understand the command
     response = process_command(command)
     
-    global current_temp  # Make sure to modify the global variable
     if "temperature" in command:
         if "set to" in command:
             temp_value = int(command.split("set to")[1].strip().replace("°C", ""))
@@ -146,7 +158,6 @@ with col1:
     st.text("Temperature:")
     st.text("To increase or decrease Temperature: \n Say: 'temperature increase' or 'temperature decrease'")
     st.text("For particular Temperature: \n Say: 'temperature set to (desired temperature)'")
-    # st.markdown(f'<div class="temperature">{current_temp}°C</div>', unsafe_allow_html=True)
     # Display updated temperature from session state
     st.markdown(f'<div class="temperature">{st.session_state.current_temp}°C</div>', unsafe_allow_html=True)
     
@@ -163,9 +174,9 @@ with col1:
 with col2:
     st.markdown('<div class="section">', unsafe_allow_html=True)
     st.subheader("🎵 Music Player")
-    # st.text("Now Playing:")
     st.text("Say the song name to play. For example: 'Play first song'")
     st.text("To stop the song, Say: 'Stop'")
+
 # Voice command function
 def listen_for_commands():
     recognizer = sr.Recognizer()
@@ -177,7 +188,6 @@ def listen_for_commands():
         recognizer.adjust_for_ambient_noise(source)
         while True:
             try:
-                print("Listening...")
                 audio = recognizer.listen(source)
                 command = recognizer.recognize_google(audio).lower()
                 
