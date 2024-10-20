@@ -29,6 +29,23 @@ In-Car AI Agents is an innovative project aimed at enhancing the driving experie
 - Node.js
 - MongoDB
 - Raspberry Pi (optional, for hardware integration)
+streamlit
+together
+pillow
+requests
+audio_recorder_streamlit==0.0.8
+langchain_core==0.2.3
+langchain_openai==0.1.8
+openai==1.30.5
+Pillow==10.3.0
+playsound==1.2.2
+pyttsx3==2.90
+streamlit==1.35.0
+streamlit-audiorec
+transformers
+whisper
+speechrecognition
+PyAudio
 
 ### Clone the Repository
 ```bash
