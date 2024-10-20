@@ -86,6 +86,7 @@ sounddevice==0.5.1
 soundfile==0.12.1
 SpeechRecognition==3.11.0
 streamlit==1.35.0
+<<<<<<< HEAD
 streamlit-audiorec==0.1.3
 sympy==1.13.1
 tabulate==0.9.0
@@ -105,3 +106,10 @@ tzdata==2024.2
 urllib3==2.2.3
 watchdog==5.0.3
 yarl==1.15.5
+=======
+streamlit-audiorec
+transformers
+whisper
+speechrecognition
+pygame
+>>>>>>> 01e0149666ab57476f86bb123ccd08ee4b38b5bc
