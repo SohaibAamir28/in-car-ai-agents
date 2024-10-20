@@ -15,3 +15,5 @@ transformers
 whisper
 speechrecognition
 pyaudio
+pipwin
+PyAudio
